@@ -58,44 +58,44 @@ option = st.selectbox(
 
 st.write('You selected:', option)
 
-if option == "Default Filtering":
-    img, t0, t1, t2, t3, t4 = image_processor(uploaded, name=str(uploaded_file.name), t0=0.205, t1=0.3465, t2=0.4657, t3=0.5472, t4=0.5974)
+# if option == "Default Filtering":
+#     img, t0, t1, t2, t3, t4 = image_processor(uploaded, name=str(uploaded_file.name), t0=0.205, t1=0.3465, t2=0.4657, t3=0.5472, t4=0.5974)
 
-    st.download_button(
-        label="Download your image!",
-        data=img,
-        file_name='filtered' + str(uploaded_file.name)
-    )
+#     st.download_button(
+#         label="Download your image!",
+#         data=img,
+#         file_name='filtered' + str(uploaded_file.name)
+#     )
 
-if option == "Custom Filtering":
-    img, t0, t1, t2, t3, t4 = image_processor(uploaded, name=str(uploaded_file.name))
+# if option == "Custom Filtering":
+#     img, t0, t1, t2, t3, t4 = image_processor(uploaded, name=str(uploaded_file.name))
 
-    st.download_button(
-        label="Download your image!",
-        data=img,
-        file_name='filtered' + str(uploaded_file.name)
-    )
+#     st.download_button(
+#         label="Download your image!",
+#         data=img,
+#         file_name='filtered' + str(uploaded_file.name)
+#     )
 
 
         
-if option == "Noise Removal":
-    img = connected_components(uploaded)
+# if option == "Noise Removal":
+#     img = connected_components(uploaded)
 
-    st.download_button(
-        label="Download your image!",
-        data=img,
-        file_name= 'filtered'+str(uploaded_file.name)
-    )
+#     st.download_button(
+#         label="Download your image!",
+#         data=img,
+#         file_name= 'filtered'+str(uploaded_file.name)
+#     )
 
-if option == "Highlighting":
-    display_components(uploaded)
+# if option == "Highlighting":
+#     display_components(uploaded)
 
 
-if option == "Boxing":
-    img = visualize_bounding_box(uploaded)
+# if option == "Boxing":
+#     img = visualize_bounding_box(uploaded)
 
-    st.download_button(
-        label="Download your image!",
-        data=img,
-        file_name= 'boxed'+str(uploaded_file.name)
-    )
+#     st.download_button(
+#         label="Download your image!",
+#         data=img,
+#         file_name= 'boxed'+str(uploaded_file.name)
+#     )
