@@ -5,7 +5,6 @@ import math
 from collections import OrderedDict
 from warnings import filterwarnings
 import skimage
-from matplotlib import pyplot as plt
 from scipy import ndimage as ndi
 from skimage import color, data, filters, graph, measure, morphology,io
 from skimage.filters import threshold_otsu,threshold_li
