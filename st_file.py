@@ -1,20 +1,20 @@
-import numpy as np
-#import matplotlib.pyplot as plt
-import cv2
-import math
-from collections import OrderedDict
-from warnings import filterwarnings
-import skimage
-from scipy import ndimage as ndi
-from skimage import color, data, filters, graph, measure, morphology,io
-from skimage.filters import threshold_otsu,threshold_li
-from skimage.measure import label, regionprops, regionprops_table
-from skimage.color.colorconv import rgb2gray
-import plotly
-import plotly.express as px
-import plotly.graph_objects as go
-import matplotlib.patches as mpatches
-import streamlit as st
+# import numpy as np
+# import matplotlib.pyplot as plt
+# import cv2
+# import math
+# from collections import OrderedDict
+# from warnings import filterwarnings
+# import skimage
+# from scipy import ndimage as ndi
+# from skimage import color, data, filters, graph, measure, morphology,io
+# from skimage.filters import threshold_otsu,threshold_li
+# from skimage.measure import label, regionprops, regionprops_table
+# from skimage.color.colorconv import rgb2gray
+# import plotly
+# import plotly.express as px
+# import plotly.graph_objects as go
+# import matplotlib.patches as mpatches
+# import streamlit as st
 
 from loopy import get_image, unshear, image_processer, connected_components, visualize_component, visualize_bounding_box, display_components
 
