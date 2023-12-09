@@ -155,7 +155,7 @@ def image_processer(img ,name :str, t0 = None ,t1 = None ,t2 = None,t3 = None,t4
   plt.savefig(name+'_processed_image',dpi=300,bbox_inches='tight',pad_inches=0)
   return binary,t0,t1,t2,t3,t4
 
-def connected_components(img: str, t=0.5, connectivity=2, min_area=30):
+def connected_components(img, t=0.5, connectivity=2, min_area=30):
     #load the image
     image = cv2.imread(img)
 
@@ -201,7 +201,7 @@ def get_prop(img):
     return prop, label_img
 
 #to visualize the connected components
-def visualize_component(img :str):
+def visualize_component(img):
 
     img = cv2.imread(img)
     if len(img.shape) != 2:
@@ -235,7 +235,7 @@ def visualize_component(img :str):
     plotly.io.show(fig)
 
 #put an image that you have filtered and selected the connected components
-def display_components(img: str):
+def display_components(img):
 
   img = cv2.imread(img)
   threshold = filters.threshold_otsu(img)
@@ -257,7 +257,7 @@ def display_components(img: str):
       plt.show()
 
 #use on an image that you have already processed
-def visualize_bounding_box(img: str):
+def visualize_bounding_box(img):
 
   img = cv2.imread(img)
   if len(img.shape) != 2:
