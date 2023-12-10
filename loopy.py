@@ -194,16 +194,15 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     # Convert the labeled image to a three-channel RGB image
     labeled_image_rgb = np.stack([labeled_image] * 3, axis=-1)
 
-    # Show the figure
-    plt.axis('off')
-    plt.imshow(labeled_image_rgb, cmap='gray_r')
+    binary_result = (labeled_image > 0).astype(np.uint8) * 255
     
     # Save the figure as an image
     buffer = bio.BytesIO()
     plt.savefig(buffer, format='png')
     buffer.seek(0)
 
-    return buffer.read()
+    return binary_result
+    #return buffer.read()
 
 
 def get_prop(img):
