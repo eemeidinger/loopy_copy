@@ -156,22 +156,33 @@ def image_processor(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
   plt.savefig('processed_image',dpi=300,bbox_inches='tight',pad_inches=0)
   return binary,t0,t1,t2,t3,t4
 
-def connected_components(image, t=0.5, min_area=30):
-    # Convert to grayscale if needed
+def connected_components(image, t=0.5, connectivity=2, min_area=30):
+
+    #convert to grayscale if needed
     if len(image.shape) != 2:
         image = color.rgb2gray(image)
 
-    # Threshold the image
+    #mask the image according to threshold
     binary_mask = image > t
 
-    # Perform connected component analysis
-    labeled_image, _ = measure.label(binary_mask, connectivity=2, return_num=True)
+    #perform connected component analysis
+    labeled_image, count = measure.label(binary_mask, connectivity=connectivity, return_num=True)
 
-    # Remove small objects
-    labeled_image = morphology.remove_small_objects(labeled_image, min_size=min_area)
+    object_features = measure.regionprops(labeled_image)
+    object_areas = [objf["area"] for objf in object_features]
 
-    # Return the binary result
-    return (labeled_image > 0).astype(np.uint8) * 255
+    for object_id, objf in enumerate(object_features, start=1):
+        if objf["area"] < min_area:
+            labeled_image[labeled_image == objf["label"]] = 0
+
+    object_mask = morphology.remove_small_objects(binary_mask, min_area)
+
+    labeled_image, n = measure.label(object_mask, connectivity=2, return_num=True)
+
+    thresh = threshold_otsu(labeled_image)
+    labeled_image = thresh * 0.002 > labeled_image
+
+    return labeled_image
 
 def get_prop(img):
     img4 = rgb2gray(img)
