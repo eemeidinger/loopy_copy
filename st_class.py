@@ -39,8 +39,6 @@ class ImageProcessorApp:
 
         # st.image('workflow.png', caption='The image processor works with many different threshold values to be precise in which text it wants to keep')
 
-        self.window = st.beta_container()
-
         self.uploaded_file = st.file_uploader("Choose a png file")
 
         if self.uploaded_file is not None:
@@ -59,6 +57,11 @@ class ImageProcessorApp:
 
         st.write('You selected:', self.option)
 
+
+    def window(self): 
+        self.window = st.beta_container()
+
+    
     def run(self):
         if self.option == "Default Filtering":
             img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name, t0=0.205, t1=0.3465,
