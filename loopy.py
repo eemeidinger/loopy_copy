@@ -1,3 +1,5 @@
+## THis is the file that is designed to be used by the streamlit app. The differences between this file and the loopy_for_nb file are minor, but important
+
 import numpy as np
 import matplotlib.pyplot as plt
 import cv2
@@ -17,10 +19,15 @@ import plotly.graph_objects as go
 import matplotlib.patches as mpatches
 import io as bio
 
+
+#an easy way for people to get images with less coding
 def get_image(name: str):
   img = cv2.imread(name)
   plt.imshow(img)
   return img
+
+
+#these functions work to unslant a page by calculating and working with shear angles to process the images in a way that make them ready to analyze by a network
 
 def deskew(img):
     thresh=img
@@ -137,6 +144,9 @@ def unshear(img):
     plt.imshow(thresh, cmap='gray_r')
     return thresh
 
+
+#this is our basic image processing function, taking in an image and customizable thresholding values in order to be precise in what text it keeps for a page
+
 def image_processor(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
   retina = img[:,:,:3]
   retina = color.rgb2gray(retina)
@@ -156,7 +166,7 @@ def image_processor(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
   plt.savefig('processed_image',dpi=300,bbox_inches='tight',pad_inches=0)
   return binary,t0,t1,t2,t3,t4
 
-
+#this function is the one that is substantially different between the files, but they both perform the same task, which is filtering out the smaller pieces of text inside a filtered image
 def connected_components(image, t=0.5, connectivity=2, min_area=30):
     # Convert the image to grayscale if needed
     if len(image.shape) == 2:
@@ -204,7 +214,7 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     return binary_result
     #return buffer.read()
 
-
+#gets the properties of each of the connected components
 def get_prop(img):
     img4 = rgb2gray(img)
     label_img = label(img4)
@@ -215,7 +225,7 @@ def get_prop(img):
                                                     'perimeter'))
     return prop, label_img
 
-#to visualize the connected components
+#to visualize the connected components and their properties of a filtered image
 def visualize_component(img):
 
     #img = cv2.imread(img)
@@ -271,7 +281,7 @@ def display_components(img):
       plt.imshow(mask, cmap=plt.cm.gray)
       plt.show()
 
-#use on an image that you have already processed
+#use on an image that you have already processed to display boxes around the individual connected components
 def visualize_bounding_box(img):
 
   #img = cv2.imread(img)
