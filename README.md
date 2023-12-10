@@ -20,7 +20,11 @@ After we do the image filtering, you can see that we still have a little bit of 
 
 Following this, we can access each of the connected components and store their individual properties for later analysis. Future instances of this project will involve a text recognition model that will be able to read each connected component
 
+
+
 There will also be a colab notebook in this file that will display the connected components in different ways, which are highlighting, boxing them in, and displaying the outlines and coordinates of them.
+
+
 
 The link below will take you to a streamlit app where you can filter your own images without the need to code yourself!
 [Click here to access the filtering app!](https://loopycopy.streamlit.app/)
