@@ -88,16 +88,29 @@ class ImageProcessorApp:
                     file_name='filtered ' + self.uploaded_file.name
                 )
 
+            # if self.option == "Noise Removal":
+            #     self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
+            #     img = connected_components(self.uploaded)
+            #     st.download_button(
+            #         label="Download your image!",
+            #         data=img,
+            #         file_name='filtered ' + self.uploaded_file.name
+            #     )
             if self.option == "Noise Removal":
-                self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
-                img = connected_components(self.uploaded)
-                img = (img > 2)
+                # Convert the uploaded image to grayscale
+                grayscale_image = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
+                
+                # Run connected components
+                binary_result = connected_components(grayscale_image, t=0.5)
+            
+                # Provide a download link
                 st.download_button(
                     label="Download your image!",
-                    data=img,
-                    file_name='filtered ' + self.uploaded_file.name
+                    data=binary_result,
+                    file_name='filtered_binary.png',
+                    mime='image/png'
                 )
-                            
+                                        
 
             if self.option == "Highlighting":
                 display_components(self.uploaded)
