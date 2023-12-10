@@ -225,8 +225,8 @@ def get_prop(img):
                                                     'perimeter'))
     return prop, label_img
 
-#to visualize the connected components and their properties of a filtered image
-def visualize_component(img):
+#to highlight the connected components and their properties in a filtered image
+def highlight_component(img):
 
     #img = cv2.imread(img)
     if len(img.shape) != 2:
