@@ -26,20 +26,15 @@ class ImageProcessorApp:
         st.write("""
         # This software will help you be able to easily filter unnecessary text or blotches out of any image 
         ---
-        In this app, you will be able to use four different functions to perform different tasks
+        In this app, you will be able to use three different functions to perform different tasks
 
         Default Filtering: This function will take a raw image and convert it to black and white using preset filtering thresholds
 
         Custom Filtering: This function does the same as the above but calculates thresholding values unique to the image
 
         Noise Removal: This function takes an already filtered image and removes smaller, unimportant instances of text
-
-        Highlighting: This function will take an already filtered image and highlight the different instances of text
-
-        Boxing: This function will take an already filtered image and create boxes around each distinct instance of text
         """)
 
-        # st.image('workflow.png', caption='The image processor works with many different threshold values to be precise in which text it wants to keep')
         self.uploaded = None  # Initialize self.uploaded to None
         self.uploaded_file = None
         self.option = None
@@ -55,7 +50,7 @@ class ImageProcessorApp:
 
         self.option = st.selectbox(
             "Please select your function",
-            ("Default Filtering", "Custom Filtering", "Noise Removal", "Highlighting", "Boxing"),
+            ("Default Filtering", "Custom Filtering", "Noise Removal"),
             index=None,
             placeholder="Options",
         )
@@ -88,14 +83,6 @@ class ImageProcessorApp:
                     file_name='filtered ' + self.uploaded_file.name
                 )
 
-            # if self.option == "Noise Removal":
-            #     self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
-            #     img = connected_components(self.uploaded)
-            #     st.download_button(
-            #         label="Download your image!",
-            #         data=img,
-            #         file_name='filtered ' + self.uploaded_file.name
-            #     )
             if self.option == "Noise Removal":
                 self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
                 binary_result = connected_components(self.uploaded, t=0.5)
@@ -112,18 +99,18 @@ class ImageProcessorApp:
                     file_name='filtered_binary.png'
                 )
                                           
+            #for the future
+            # if self.option == "Highlighting":
+            #     display_components(self.uploaded)
 
-            if self.option == "Highlighting":
-                display_components(self.uploaded)
+            # if self.option == "Boxing":
+            #     img = visualize_bounding_box(self.uploaded)
+            #     img_bytes = cv2.imencode(".png", img)[1].tobytes()
 
-            if self.option == "Boxing":
-                img = visualize_bounding_box(self.uploaded)
-                img_bytes = cv2.imencode(".png", img)[1].tobytes()
-
-                st.download_button(
-                    label="Download your image!",
-                    data=img_bytes,
-                    file_name='boxed ' + self.uploaded_file.name
-                )
+            #     st.download_button(
+            #         label="Download your image!",
+            #         data=img_bytes,
+            #         file_name='boxed ' + self.uploaded_file.name
+            #     )
         else:
             st.warning("Please upload an image before selecting a function.")
