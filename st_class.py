@@ -89,15 +89,14 @@ class ImageProcessorApp:
                 )
 
             if self.option == "Noise Removal":
-                self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
+
                 binary_result = connected_components(self.uploaded, t=0.5)
             
                 # Encode the binary result as bytes
-                _, img_bytes = cv2.imencode(".png", binary_result.astype(np.uint8) * 255)
             
                 st.download_button(
                     label="Download your image!",
-                    data=img_bytes.tobytes(),
+                    data=binary_result.tobytes(),
                     file_name='filtered_binary ' + self.uploaded_file.name
                 )
 
