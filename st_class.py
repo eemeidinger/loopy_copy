@@ -6,8 +6,8 @@ from collections import OrderedDict
 from warnings import filterwarnings
 import skimage
 from scipy import ndimage as ndi
-from skimage import color, data, filters, graph, measure, morphology, io
-from skimage.filters import threshold_otsu, threshold_li
+from skimage import color, data, filters, graph, measure, morphology,io
+from skimage.filters import threshold_otsu,threshold_li
 from skimage.measure import label, regionprops, regionprops_table
 from skimage.color.colorconv import rgb2gray
 import plotly
@@ -15,9 +15,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 import matplotlib.patches as mpatches
 import streamlit as st
-import io
 
 from loopy import get_image, unshear, image_processer, connected_components, visualize_component, visualize_bounding_box, display_components
+
 
 class ImageProcessorApp:
     def __init__(self):
@@ -44,15 +44,15 @@ class ImageProcessorApp:
 
         
     def image(self):
-        uploaded_file = st.file_uploader("Choose a png file")
-        if uploaded_file is not None:
+        self.uploaded_file = st.file_uploader("Choose a png file")
+        if self.uploaded_file is not None:
             # Read the file data into a BytesIO object
-            bytes_io = io.BytesIO(uploaded_file.getvalue())
+            bytes_io = io.BytesIO(self.uploaded_file.getvalue())
 
             # Read the image data from the BytesIO object
-            uploaded = cv2.imdecode(np.frombuffer(bytes_io.read(), np.uint8), -1)
+            self.uploaded = cv2.imdecode(np.frombuffer(bytes_io.read(), np.uint8), -1)
 
-        option = st.selectbox(
+        self.option = st.selectbox(
             "Please select your function",
             ("Default Filtering", "Custom Filtering", "Noise Removal", "Highlighting", "Boxing"),
             index=None,
@@ -61,7 +61,7 @@ class ImageProcessorApp:
 
         st.write('You selected:', self.option)
 
-        return uploaded, uploaded_file, option
+        return self.uploaded, self.uploaded_file, self.option
    
     def run(self):
         if self.option == "Default Filtering":
@@ -102,3 +102,5 @@ class ImageProcessorApp:
                 data=img,
                 file_name='boxed ' + self.uploaded_file.name
             )
+
+ 
