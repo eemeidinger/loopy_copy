@@ -66,7 +66,6 @@ class ImageProcessorApp:
         if self.option == "Default Filtering":
             img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name, t0=0.205, t1=0.3465,
                                                        t2=0.4657, t3=0.5472, t4=0.5974)
-            plt.imshow(img)
             st.download_button(
                 label="Download your image!",
                 data=img,
