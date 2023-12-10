@@ -183,19 +183,13 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     thresh = threshold_otsu(labeled_image)
     labeled_image = thresh * 0.002 > labeled_image
 
-
-    labeled_image_rgb = np.zeros_like(labeled_image)
-    labeled_image_rgb[..., 0] = labeled_image
-    labeled_image_rgb[..., 1] = labeled_image
-    labeled_image_rgb[..., 2] = labeled_image
-
     # Show the figure
     plt.axis('off')
-    plt.imshow(labeled_image_rgb, cmap='gray_r')
+    plt.imshow(labeled_image, cmap='gray_r')
     plt.savefig('cc_processed')
     plt.show()
 
-    return labeled_image_rgb
+    return labeled_image
 
 
 
