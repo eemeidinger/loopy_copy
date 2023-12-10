@@ -43,7 +43,8 @@ class ImageProcessorApp:
         self.run()
 
     def image(self):
-        self.uploaded_file = st.file_uploader("Choose a png file")
+        unique_key = "file_uploader_" + str(hash(self))  # Generate a unique key based on the object's hash
+        self.uploaded_file = st.file_uploader("Choose a png file", key = unique_key)
         if self.uploaded_file is not None:
             # Read the file data into a BytesIO object
             bytes_io = io.BytesIO(self.uploaded_file.getvalue())
