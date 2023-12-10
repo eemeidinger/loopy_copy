@@ -39,6 +39,7 @@ class ImageProcessorApp:
 
         # st.image('workflow.png', caption='The image processor works with many different threshold values to be precise in which text it wants to keep')
         self.image()
+        self.run()
 
 
         
