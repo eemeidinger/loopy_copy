@@ -63,26 +63,6 @@ class ImageProcessorApp:
         st.write('You selected:', self.option)
 
         return self.uploaded, self.uploaded_file, self.option
-
-        
-        def image_processor(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
-          retina = img[:,:,:3]
-          retina = color.rgb2gray(retina)
-          if t0 is None and t1 is None and t2 is None and t3 is None and t4 is None:
-              t0, t1, t2, t3, t4 = filters.threshold_multiotsu(retina, classes=6)
-          mask = (retina < t0)
-          vessels = filters.sato(retina, sigmas=range(1, 10)) * mask
-          thresholded = filters.apply_hysteresis_threshold(vessels, 0.01, 0.03)
-          labeled = ndi.label(thresholded)[0]
-        
-        
-          thresh = threshold_otsu(retina)
-          binary = thresh > retina
-          binary = unshear(binary * 255)
-          plt.axis('off')
-          plt.imshow(binary)
-          plt.savefig('processed_image',dpi=300,bbox_inches='tight',pad_inches=0)
-          return binary,t0,t1,t2,t3,t4
         
     def run(self):
         if self.uploaded is not None:  # Check if self.uploaded is defined
