@@ -92,9 +92,9 @@ class ImageProcessorApp:
                 self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
                 labeled_image = connected_components(self.uploaded, t=0.5)
 
-                labeled_image = labeled_image.astype(np.uint8)
+                labeled_image = np.array(labeled_image, dtype=np.uint8)
 
-                binary_result = (labeled_image > 0) * 255
+                _, binary_result = cv2.threshold(labeled_image, 1, 255, cv2.THRESH_BINARY)
                 
     
                 st.download_button(
