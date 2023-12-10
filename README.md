@@ -18,5 +18,9 @@ After we do the image filtering, you can see that we still have a little bit of 
   <img src="https://github.com/eemeidinger/loopy_copy/blob/main/first_image/filtered_image_for_github.png" alt="final_image">
 </p>
 
+Following this, we can access each of the connected components and store their individual properties for later analysis. Future instances of this project will involve a text recognition model that will be able to read each connected component
+
+There will also be a colab notebook in this file that will display the connected components in different ways, which are highlighting, boxing them in, and displaying the outlines and coordinates of them.
+
 
 [Click here to access the filtering app!](https://loopycopy.streamlit.app/)
