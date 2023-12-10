@@ -15,6 +15,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import matplotlib.patches as mpatches
 import streamlit as st
+import io
 
 import loopy
 
@@ -40,7 +41,12 @@ class ImageProcessorApp:
 
        self.uploaded_file = st.file_uploader("Choose a png file")
 
-       self.uploaded = cv2.imread(self.uploaded_file)
+       if self.uploaded_file is not None:
+          # Read the file data into a BytesIO object
+          bytes_io = io.BytesIO(self.uploaded_file.getvalue())
+
+          # Read the image data from the BytesIO object
+          self.uploaded = cv2.imdecode(np.frombuffer(bytes_io.read(), np.uint8), -1)
 
        self.option = st.selectbox(
            "Please select your function",
