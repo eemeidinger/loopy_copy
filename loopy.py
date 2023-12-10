@@ -184,7 +184,7 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     labeled_image = thresh * 0.002 > labeled_image
 
 
-    labeled_image_rgb = np.zeros_like(image)
+    labeled_image_rgb = np.zeros_like(labeled_image)
     labeled_image_rgb[..., 0] = labeled_image
     labeled_image_rgb[..., 1] = labeled_image
     labeled_image_rgb[..., 2] = labeled_image
