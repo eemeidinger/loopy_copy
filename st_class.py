@@ -42,7 +42,7 @@ class ImageProcessorApp:
         self.window()
 
         
-    def __image__(self):
+    def image(self):
         self.uploaded_file = st.file_uploader("Choose a png file")
         if self.uploaded_file is not None:
             # Read the file data into a BytesIO object
@@ -61,13 +61,7 @@ class ImageProcessorApp:
         st.write('You selected:', self.option)
 
         return self.uploaded, self.uploaded_file, self.option
-
-    def window(self): 
-        self.window = st.beta_container()
-
-
-    
-    
+   
     def run(self):
         if self.option == "Default Filtering":
             img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name, t0=0.205, t1=0.3465,
