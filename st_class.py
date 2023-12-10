@@ -17,7 +17,7 @@ import matplotlib.patches as mpatches
 import streamlit as st
 import io
 
-import loopy
+from loopy import get_image, unshear, image_processer, connected_components, visualize_component, visualize_bounding_box, display_components
 
 class ImageProcessorApp:
     def __init__(self):
@@ -61,6 +61,8 @@ class ImageProcessorApp:
     def window(self): 
         self.window = st.beta_container()
 
+
+    
     
     def run(self):
         if self.option == "Default Filtering":
