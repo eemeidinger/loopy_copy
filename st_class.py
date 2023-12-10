@@ -58,6 +58,7 @@ class ImageProcessorApp:
 
         st.write('You selected:', self.option)
 
+        return self.uploaded, self.uploaded_file
 
     def window(self): 
         self.window = st.beta_container()
