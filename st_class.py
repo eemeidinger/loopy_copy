@@ -89,14 +89,17 @@ class ImageProcessorApp:
                 )
 
             if self.option == "Noise Removal":
-                
-                binary_result = connected_components(self.uploaded, t=0.5)
-        
+                     
+                img = connected_components(self.uploaded)
+                img_bytes = cv2.imencode(".png", img)[1].tobytes()
+    
                 st.download_button(
                     label="Download your image!",
-                    data=binary_result,
-                    file_name='filtered_binary.png'
+                    data=img_bytes,
+                    file_name='filtered ' + self.uploaded_file.name
                 )
+
+                
 
             if self.option == "Highlighting":
                 display_components(self.uploaded)
