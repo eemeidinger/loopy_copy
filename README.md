@@ -1,7 +1,7 @@
 # loopy_copy
 Image analysis for 19th century port documents
 
-![alt text](https://github.com/eemeidinger/loopy_copy/blob/main/docs/workflow.png?raw=true)
+![alt text](https://github.com/eemeidinger/loopy_copy/tree/main/first_image/workflow.png?raw=true)
 
 
 
