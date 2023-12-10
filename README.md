@@ -22,5 +22,5 @@ Following this, we can access each of the connected components and store their i
 
 There will also be a colab notebook in this file that will display the connected components in different ways, which are highlighting, boxing them in, and displaying the outlines and coordinates of them.
 
-
+The link below will take you to a streamlit app where you can filter your own images without the need to code yourself!
 [Click here to access the filtering app!](https://loopycopy.streamlit.app/)
