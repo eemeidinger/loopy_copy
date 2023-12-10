@@ -1,11 +1,9 @@
 # loopy_copy
 Image analysis for 19th century port documents
 
-![alt text](https://github.com/eemeidinger/loopy_copy/tree/main/first_image/workflow.png?raw=true)
 
-![alt text](https://github.com/eemeidinger/loopy_copy/tree/main/first_image/workflow.png)
+![workflow](https://github.com/eemeidinger/loopy_copy/assets/136099064/8932fd73-8c2e-4726-87f2-ed29d0d8e69d)
 
-(https://github.com/eemeidinger/loopy_copy/issues/1#issue-2034553781)
 
 
 The goal is to conduct OCR analysis to help with reading and transcription of Spanish port documents. While this project is designed to be used on old Spanish documents, it is intended to be flexible enough to be trained on any form of writing.
