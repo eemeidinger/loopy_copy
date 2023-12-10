@@ -203,7 +203,7 @@ def get_prop(img):
 #to visualize the connected components
 def visualize_component(img):
 
-    img = cv2.imread(img)
+    #img = cv2.imread(img)
     if len(img.shape) != 2:
        img = skimage.color.rgb2gray(img)
     threshold = filters.threshold_otsu(img)
@@ -259,7 +259,7 @@ def display_components(img):
 #use on an image that you have already processed
 def visualize_bounding_box(img):
 
-  img = cv2.imread(img)
+  #img = cv2.imread(img)
   if len(img.shape) != 2:
        img = skimage.color.rgb2gray(img)
   threshold = filters.threshold_otsu(img)
