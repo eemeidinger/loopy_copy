@@ -97,7 +97,7 @@ class ImageProcessorApp:
                 
                 st.download_button(
                     label="Download your image!",
-                    data=img_bytes.get_value(),
+                    data=img_bytes.getvalue(),
                     file_name='filtered ' + self.uploaded_file.name
                 )
 
