@@ -19,7 +19,6 @@ import io
 
 from loopy import get_image, unshear, image_processer, connected_components, visualize_component, visualize_bounding_box, display_components
 
-
 class ImageProcessorApp:
     def __init__(self):
         st.write("""
@@ -38,6 +37,8 @@ class ImageProcessorApp:
         Boxing: This function will take an already filtered image and create boxes around each distinct instance of text
         """)
 
+        # st.image('workflow.png', caption='The image processor works with many different threshold values to be precise in which text it wants to keep')
+
         self.uploaded_file = st.file_uploader("Choose a png file")
 
         if self.uploaded_file is not None:
@@ -46,7 +47,6 @@ class ImageProcessorApp:
 
             # Read the image data from the BytesIO object
             self.uploaded = cv2.imdecode(np.frombuffer(bytes_io.read(), np.uint8), -1)
-            return self.uploaded
 
         self.option = st.selectbox(
             "Please select your function",
