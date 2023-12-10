@@ -92,7 +92,7 @@ class ImageProcessorApp:
                 self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
                 labeled_image = connected_components(self.uploaded, t=0.5)
 
-                img_bytes = io.BytesIO()
+                img_bytes = bio.BytesIO()
                 plt.imsave(img_bytes, labeled_image, cmap='gray_r', format='png')
                 
                 st.download_button(
