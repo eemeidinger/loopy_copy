@@ -136,7 +136,7 @@ def unshear(img):
     plt.imshow(thresh, cmap='gray_r')
     return thresh
 
-def image_processer(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
+def image_processor(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
   retina = img[:,:,:3]
   retina = color.rgb2gray(retina)
   if t0 is None and t1 is None and t2 is None and t3 is None and t4 is None:
