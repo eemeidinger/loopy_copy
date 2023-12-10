@@ -103,7 +103,7 @@ class ImageProcessorApp:
                 binary_result = connected_components(self.uploaded, t=0.5)
                 
                 # Convert to bytes
-                binary_bytes = binary_result.tobytes()
+                binary_bytes = binary_result
                 
                 st.download_button(
                     label="Download your image!",
