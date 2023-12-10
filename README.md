@@ -10,6 +10,6 @@ Below is an example workflow of the filtering algorithm used here. Inside, we us
 # Connected Components
 After we do the image filtering, you can see that we still have a little bit of noise or extra text throughout the page, most clearly seen in the bottom left corner of the black and white image above. Noise like this could potentially harm the accuracy and efficiency of text recognition models, so we want to try and filter out as much unnecessary information as possible while still retaining all the relevant text information. As a rule of thumb, the algorithm will usually retain slightly more than is necessary as to not filter out any important text information. For this specific project, we want to keep as much data as possible. Below is the black and white image from above that has been filtered to remove a good amount of noise.
 
-![final_image]((https://github.com/eemeidinger/loopy_copy/blob/main/first_image/filtered_image_for_github.png)
+![final_image](https://github.com/eemeidinger/loopy_copy/blob/main/first_image/filtered_image_for_github.png)
 
 [Click here to access the filtering app!](https://loopycopy.streamlit.app/)
