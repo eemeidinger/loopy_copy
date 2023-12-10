@@ -92,7 +92,7 @@ class ImageProcessorApp:
                 self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
                 binary_result = connected_components(self.uploaded, t=0.5)
             
-                grayscale_image = binary_result.astype(np.uint8) * 255
+                grayscale_image = binary_result.astype(np.uint8)
 
                 # Encode the grayscale image as bytes
                 _, img_bytes = cv2.imencode(".png", grayscale_image)
