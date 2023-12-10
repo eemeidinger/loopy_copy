@@ -41,12 +41,13 @@ class ImageProcessorApp:
 
        self.uploaded_file = st.file_uploader("Choose a png file")
 
-       if self.uploaded_file is not None:
-          # Read the file data into a BytesIO object
-          bytes_io = io.BytesIO(self.uploaded_file.getvalue())
 
+      if self.uploaded_file is not None:
+         # Read the file data into a BytesIO object
+         bytes_io = io.BytesIO(self.uploaded_file.getvalue())
+   
           # Read the image data from the BytesIO object
-          self.uploaded = cv2.imdecode(np.frombuffer(bytes_io.read(), np.uint8), -1)
+         self.uploaded = cv2.imdecode(np.frombuffer(bytes_io.read(), np.uint8), -1)
 
        self.option = st.selectbox(
            "Please select your function",
