@@ -157,15 +157,25 @@ def image_processor(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
   return binary,t0,t1,t2,t3,t4
 
 def connected_components(image, t=0.5, connectivity=2, min_area=30):
+    # Convert the image to grayscale if needed
+    if len(image.shape) == 2:
+        grayscale_image = image
+    elif len(image.shape) == 3 and image.shape[2] == 3:
+        grayscale_image = color.rgb2gray(image)
+    elif len(image.shape) == 3 and image.shape[2] == 4:
+        # Convert RGBA to RGB
+        grayscale_image = color.rgba2rgb(image)
+        grayscale_image = color.rgb2gray(grayscale_image)
+    else:
+        raise ValueError("Unsupported image format")
 
-    #convert to grayscale if needed
-    if len(image.shape) != 2:
-        image = color.rgb2gray(image)
+    # Ensure the image is in the range [0, 1]
+    grayscale_image = grayscale_image.astype(np.float32) / 255.0
 
-    #mask the image according to threshold
-    binary_mask = image > t
+    # Mask the image according to threshold
+    binary_mask = (grayscale_image > t).astype(np.uint8)
 
-    #perform connected component analysis
+    # Perform connected component analysis
     labeled_image, count = measure.label(binary_mask, connectivity=connectivity, return_num=True)
 
     object_features = measure.regionprops(labeled_image)
@@ -179,10 +189,19 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
 
     labeled_image, n = measure.label(object_mask, connectivity=2, return_num=True)
 
-    thresh = threshold_otsu(labeled_image)
-    labeled_image = thresh * 0.002 > labeled_image
+    # Convert the labeled image to a three-channel RGB image
+    labeled_image_rgb = np.stack([labeled_image] * 3, axis=-1)
 
-    return labeled_image
+    # Show the figure
+    plt.axis('off')
+    plt.imshow(labeled_image_rgb, cmap='gray_r')
+    
+    # Save the figure as an image
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+
+    return buffer.read()
 
 def get_prop(img):
     img4 = rgb2gray(img)
