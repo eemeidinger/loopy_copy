@@ -197,7 +197,7 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     plt.imshow(labeled_image_rgb, cmap='gray_r')
     
     # Save the figure as an image
-    buffer = io.BytesIO()
+    buffer = bio.BytesIO()
     plt.savefig(buffer, format='png')
     buffer.seek(0)
 
