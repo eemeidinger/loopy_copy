@@ -93,7 +93,3 @@ class ImageProcessorApp:
                data=img,
                file_name= 'boxed'+str(self.uploaded_file.name)
            )
-
-if __name__ == "__main__":
-   app = ImageProcessorApp()
-   app.run()
