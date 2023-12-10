@@ -201,7 +201,7 @@ def get_prop(img):
     return prop, label_img
 
 #to visualize the connected components
-def visualize_component(img):
+def highlight_component(img):
 
     img = cv2.imread(img)
     if len(img.shape) != 2:
