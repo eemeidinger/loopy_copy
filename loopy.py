@@ -156,7 +156,7 @@ def image_processor(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
   plt.savefig('processed_image',dpi=300,bbox_inches='tight',pad_inches=0)
   return binary,t0,t1,t2,t3,t4
 
-def connected_components(image, t=0.5, connectivity=2, min_area=30):
+def connected_components(image, t=0.5, min_area=30):
     # Convert the image to grayscale if needed
     if len(image.shape) == 2:
         grayscale_image = image
@@ -172,32 +172,23 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     # Ensure the image is in the range [0, 1]
     grayscale_image = (grayscale_image * 255).astype(np.uint8)
 
-    # Mask the image according to threshold
-    binary_mask = (grayscale_image > t).astype(np.uint8)
+    # Threshold the image
+    _, binary_mask = cv2.threshold(grayscale_image, t * 255, 255, cv2.THRESH_BINARY)
 
-    # Perform connected component analysis
-    labeled_image, count = measure.label(binary_mask, connectivity=connectivity, return_num=True)
+    # Find contours
+    contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    object_features = measure.regionprops(labeled_image)
-    object_areas = [objf["area"] for objf in object_features]
+    # Draw bounding boxes around connected components
+    result_image = image.copy()
+    for contour in contours:
+        x, y, w, h = cv2.boundingRect(contour)
+        if w * h > min_area:
+            cv2.rectangle(result_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-    for object_id, objf in enumerate(object_features, start=1):
-        if objf["area"] < min_area:
-            labeled_image[labeled_image == objf["label"]] = 0
-
-    # Use binary_mask directly instead of removing small objects
-    object_mask = binary_mask
-
-    labeled_image, n = measure.label(object_mask, connectivity=2, return_num=True)
-
-    # Convert the labeled image to a three-channel RGB image
-    labeled_image_rgb = np.stack([labeled_image] * 3, axis=-1)
-
-    # Encode the image as bytes
-    _, img_bytes = cv2.imencode(".png", labeled_image_rgb)
+    # Convert the result image to bytes
+    _, img_bytes = cv2.imencode(".png", result_image)
 
     return img_bytes.tobytes()
-
 
 
 
