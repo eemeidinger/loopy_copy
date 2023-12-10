@@ -151,7 +151,7 @@ def image_processer(img ,name :str, t0 = None ,t1 = None ,t2 = None,t3 = None,t4
   binary = thresh > retina
   binary = unshear(binary * 255)
   plt.axis('off')
-  plt.imshow(binary)
+  plt.imshow(binary, cmap = 'gray_r')
   plt.savefig(name+'_processed_image',dpi=300,bbox_inches='tight',pad_inches=0)
   return binary,t0,t1,t2,t3,t4
 
