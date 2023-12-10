@@ -39,8 +39,9 @@ class ImageProcessorApp:
 
         # st.image('workflow.png', caption='The image processor works with many different threshold values to be precise in which text it wants to keep')
 
+        
+    def __image__(self)
         self.uploaded_file = st.file_uploader("Choose a png file")
-
         if self.uploaded_file is not None:
             # Read the file data into a BytesIO object
             bytes_io = io.BytesIO(self.uploaded_file.getvalue())
