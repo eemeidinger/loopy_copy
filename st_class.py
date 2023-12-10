@@ -98,7 +98,7 @@ class ImageProcessorApp:
                 # Provide a download link
                 st.download_button(
                     label="Download your image!",
-                    data=buffer.read(),
+                    data=buffer.getvalue(),
                     file_name='filtered_binary.png',
                     mime='image/png'
                 )
