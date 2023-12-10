@@ -155,9 +155,9 @@ def image_processor(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
   plt.savefig('processed_image',dpi=300,bbox_inches='tight',pad_inches=0)
   return binary,t0,t1,t2,t3,t4
 
-def connected_components(image, t=0.5, connectivity=2, min_area=30):
+def connected_components(img, t=0.5, connectivity=2, min_area=30):
     #load the image
-    #image = cv2.imread(img)
+    image = cv2.imread(img)
 
     #convert to grayscale if needed
     if len(image.shape) != 2:
