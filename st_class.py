@@ -16,6 +16,8 @@ import plotly.graph_objects as go
 import matplotlib.patches as mpatches
 import streamlit as st
 
+import io as bio
+
 from loopy import get_image, unshear, image_processer, connected_components, visualize_component, visualize_bounding_box, display_components
 
 
@@ -46,7 +48,7 @@ class ImageProcessorApp:
         self.uploaded_file = st.file_uploader("Choose a png file")
         if self.uploaded_file is not None:
             # Read the file data into a BytesIO object
-            bytes_io = io.BytesIO(self.uploaded_file.getvalue())
+            bytes_io = bio.BytesIO(self.uploaded_file.getvalue())
 
             # Read the image data from the BytesIO object
             self.uploaded = cv2.imdecode(np.frombuffer(bytes_io.read(), np.uint8), -1)
