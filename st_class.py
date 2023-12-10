@@ -39,9 +39,7 @@ class ImageProcessorApp:
        #st.image('workflow.png', caption = 'The image processor works with many different threshold values to be precise in which text it wants to keep')
 
        self.uploaded_file = st.file_uploader("Choose a png file", accept_multiple_files=False)
-       self.bytes_data = self.uploaded_file.read()
        st.write("filename:", self.uploaded_file.name)
-       st.write(self.bytes_data)
 
        self.uploaded = cv2.imread(self.uploaded_file)
 
