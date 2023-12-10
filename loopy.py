@@ -136,7 +136,7 @@ def unshear(img):
     plt.imshow(thresh, cmap='gray_r')
     return thresh
 
-def image_processer(img ,name :str, t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
+def image_processer(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
   retina = img[:,:,:3]
   retina = color.rgb2gray(retina)
   if t0 is None and t1 is None and t2 is None and t3 is None and t4 is None:
@@ -152,7 +152,7 @@ def image_processer(img ,name :str, t0 = None ,t1 = None ,t2 = None,t3 = None,t4
   binary = unshear(binary * 255)
   plt.axis('off')
   plt.imshow(binary)
-  plt.savefig(name+'_processed_image',dpi=300,bbox_inches='tight',pad_inches=0)
+  plt.savefig('processed_image',dpi=300,bbox_inches='tight',pad_inches=0)
   return binary,t0,t1,t2,t3,t4
 
 def connected_components(img, t=0.5, connectivity=2, min_area=30):
