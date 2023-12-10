@@ -39,6 +39,8 @@ class ImageProcessorApp:
 
         # st.image('workflow.png', caption='The image processor works with many different threshold values to be precise in which text it wants to keep')
 
+        self.window = st.beta_container()
+
         self.uploaded_file = st.file_uploader("Choose a png file")
 
         if self.uploaded_file is not None:
