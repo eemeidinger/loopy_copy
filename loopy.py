@@ -192,6 +192,12 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     # Convert the labeled image to a three-channel RGB image
     labeled_image_rgb = np.stack([labeled_image] * 3, axis=-1)
 
+    # Convert the labeled image to bytes
+    _, img_bytes = cv2.imencode(".png", labeled_image_rgb)
+
+    return img_bytes.tobytes()
+
+
     # Show the figure
     plt.axis('off')
     plt.imshow(labeled_image_rgb, cmap='gray_r')
