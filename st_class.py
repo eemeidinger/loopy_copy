@@ -56,21 +56,21 @@ class ImageProcessorApp:
 
    def run(self):
        if self.option == "Default Filtering":
-           img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=str(self.uploaded_file.name), t0=0.205, t1=0.3465, t2=0.4657, t3=0.5472, t4=0.5974)
+           img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name, t0=0.205, t1=0.3465, t2=0.4657, t3=0.5472, t4=0.5974)
 
            st.download_button(
                label="Download your image!",
                data=img,
-               file_name='filtered' + str(self.uploaded_file.name)
+               file_name='filtered ' + self.uploaded_file.name
            )
 
        if self.option == "Custom Filtering":
-           img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=str(self.uploaded_file.name))
+           img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name)
 
            st.download_button(
                label="Download your image!",
                data=img,
-               file_name='filtered' + str(self.uploaded_file.name)
+               file_name='filtered ' + self.uploaded_file.name
            )
 
        if self.option == "Noise Removal":
@@ -79,7 +79,7 @@ class ImageProcessorApp:
            st.download_button(
                label="Download your image!",
                data=img,
-               file_name= 'filtered'+str(self.uploaded_file.name)
+               file_name= 'filtered '+ self.uploaded_file.name
            )
 
        if self.option == "Highlighting":
@@ -91,5 +91,5 @@ class ImageProcessorApp:
            st.download_button(
                label="Download your image!",
                data=img,
-               file_name= 'boxed'+str(self.uploaded_file.name)
+               file_name= 'boxed '+self.uploaded_file.name
            )
