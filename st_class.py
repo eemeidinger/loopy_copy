@@ -88,13 +88,28 @@ class ImageProcessorApp:
                     file_name='filtered ' + self.uploaded_file.name
                 )
 
+            # if self.option == "Noise Removal":
+            #     self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
+            #     img = connected_components(self.uploaded)
+            #     st.download_button(
+            #         label="Download your image!",
+            #         data=img,
+            #         file_name='filtered ' + self.uploaded_file.name
+            #     )
             if self.option == "Noise Removal":
                 self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
-                img = connected_components(self.uploaded)
+                binary_result = connected_components(self.uploaded, t=0.5)
+                
+                # Encode the binary result as bytes
+                _, img_bytes = cv2.imencode(".png", binary_result)
+                
+                # Convert img_bytes to bytes
+                img_bytes = bytes(img_bytes)
+            
                 st.download_button(
                     label="Download your image!",
-                    data=img,
-                    file_name='filtered ' + self.uploaded_file.name
+                    data=img_bytes,
+                    file_name='filtered_binary.png'
                 )
                                           
 
