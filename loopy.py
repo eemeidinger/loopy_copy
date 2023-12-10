@@ -185,7 +185,7 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
         if objf["area"] < min_area:
             labeled_image[labeled_image == objf["label"]] = 0
 
-    object_mask = morphology.remove_small_objects(binary_mask, min_area)
+    object_mask = morphology.remove_small_objects(labeled_image, min_area)
 
     labeled_image, n = measure.label(object_mask, connectivity=2, return_num=True)
 
