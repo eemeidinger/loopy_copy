@@ -157,7 +157,6 @@ def image_processor(img , t0 = None ,t1 = None ,t2 = None,t3 = None,t4 = None):
   return binary,t0,t1,t2,t3,t4
 
 
-
 def connected_components(image, t=0.5, connectivity=2, min_area=30):
     # Convert the image to grayscale if needed
     if len(image.shape) == 2:
@@ -205,7 +204,6 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     buffer.seek(0)
 
     return buffer.read()
-
 
 
 def get_prop(img):
