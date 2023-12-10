@@ -170,7 +170,7 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
         raise ValueError("Unsupported image format")
 
     # Ensure the image is in the range [0, 1]
-    grayscale_image = grayscale_image.astype(np.float32) / 255.0
+    grayscale_image = (grayscale_image * 255).astype(np.uint8)
 
     # Mask the image according to threshold
     binary_mask = (grayscale_image > t).astype(np.uint8)
@@ -192,7 +192,7 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     # Convert the labeled image to a three-channel RGB image
     labeled_image_rgb = np.stack([labeled_image] * 3, axis=-1)
 
-    # Convert the labeled image to bytes
+    # Encode the image as bytes
     _, img_bytes = cv2.imencode(".png", labeled_image_rgb)
 
     return img_bytes.tobytes()
