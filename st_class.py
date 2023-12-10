@@ -44,15 +44,15 @@ class ImageProcessorApp:
 
         
     def image(self):
-        self.uploaded_file = st.file_uploader("Choose a png file")
-        if self.uploaded_file is not None:
+        uploaded_file = st.file_uploader("Choose a png file")
+        if uploaded_file is not None:
             # Read the file data into a BytesIO object
-            bytes_io = io.BytesIO(self.uploaded_file.getvalue())
+            bytes_io = io.BytesIO(uploaded_file.getvalue())
 
             # Read the image data from the BytesIO object
-            self.uploaded = cv2.imdecode(np.frombuffer(bytes_io.read(), np.uint8), -1)
+            uploaded = cv2.imdecode(np.frombuffer(bytes_io.read(), np.uint8), -1)
 
-        self.option = st.selectbox(
+        option = st.selectbox(
             "Please select your function",
             ("Default Filtering", "Custom Filtering", "Noise Removal", "Highlighting", "Boxing"),
             index=None,
@@ -61,7 +61,7 @@ class ImageProcessorApp:
 
         st.write('You selected:', self.option)
 
-        return self.uploaded, self.uploaded_file, self.option
+        return uploaded, uploaded_file, option
    
     def run(self):
         if self.option == "Default Filtering":
