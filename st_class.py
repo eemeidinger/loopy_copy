@@ -69,27 +69,32 @@ class ImageProcessorApp:
             if self.option == "Default Filtering":
                 img, t0, t1, t2, t3, t4 = image_processor(self.uploaded , t0=0.205, t1=0.3465,
                                                            t2=0.4657, t3=0.5472, t4=0.5974)
+
+                img_bytes = cv2.imencode(".png", img)[1].tobytes()
                 st.download_button(
                     label="Download your image!",
-                    data=img,
+                    data=img_bytes,
                     file_name='filtered ' + self.uploaded_file.name
                 )
 
             if self.option == "Custom Filtering":
                 img, t0, t1, t2, t3, t4 = image_processor(self.uploaded)
 
+                img_bytes = cv2.imencode(".png", img)[1].tobytes()
+
                 st.download_button(
                     label="Download your image!",
-                    data=img,
+                    data=img_bytes,
                     file_name='filtered ' + self.uploaded_file.name
                 )
 
             if self.option == "Noise Removal":
                 img = connected_components(self.uploaded)
+                img_bytes = cv2.imencode(".png", img)[1].tobytes()
 
                 st.download_button(
                     label="Download your image!",
-                    data=img,
+                    data=img_bytes,
                     file_name='filtered ' + self.uploaded_file.name
                 )
 
@@ -98,10 +103,11 @@ class ImageProcessorApp:
 
             if self.option == "Boxing":
                 img = visualize_bounding_box(self.uploaded)
+                img_bytes = cv2.imencode(".png", img)[1].tobytes()
 
                 st.download_button(
                     label="Download your image!",
-                    data=img,
+                    data=img_bytes,
                     file_name='boxed ' + self.uploaded_file.name
                 )
         else:
