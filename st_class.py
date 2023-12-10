@@ -91,10 +91,13 @@ class ImageProcessorApp:
             if self.option == "Noise Removal":
                 self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
                 labeled_image = connected_components(self.uploaded, t=0.5)
+
+                _, binary_result = cv2.threshold(labeled_image, 1, 255, cv2.THRESH_BINARY)
+                
     
                 st.download_button(
                     label="Download your image!",
-                    data=labeled_image,
+                    data=binary_result,
                     file_name='filtered ' + self.uploaded_file.name
                 )
 
