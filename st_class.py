@@ -89,7 +89,7 @@ class ImageProcessorApp:
                 )
 
             if self.option == "Noise Removal":
-                self.uploaded = cv2.imdecode(np.frombuffer(bytes_io.read(), np.uint8), cv2.IMREAD_COLOR)
+                self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
                 img = connected_components(self.uploaded)
                 img_bytes = cv2.imencode(".png", img)[1].tobytes()
 
