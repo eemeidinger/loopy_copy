@@ -185,9 +185,10 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
         if objf["area"] < min_area:
             labeled_image[labeled_image == objf["label"]] = 0
 
-    object_mask = morphology.remove_small_objects(binary_mask, min_area)
+    # Use binary_mask directly instead of removing small objects
+    object_mask = binary_mask
 
-    labeled_image, n = measure.label(labeled_image, connectivity=2, return_num=True)
+    labeled_image, n = measure.label(object_mask, connectivity=2, return_num=True)
 
     # Convert the labeled image to a three-channel RGB image
     labeled_image_rgb = np.stack([labeled_image] * 3, axis=-1)
@@ -198,16 +199,8 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     return img_bytes.tobytes()
 
 
-    # Show the figure
-    plt.axis('off')
-    plt.imshow(labeled_image_rgb, cmap='gray_r')
-    
-    # Save the figure as an image
-    buffer = bio.BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
 
-    return buffer.read()
+
 
 def get_prop(img):
     img4 = rgb2gray(img)
