@@ -91,7 +91,7 @@ class ImageProcessorApp:
             if self.option == "Noise Removal":
                 self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
                 img = connected_components(self.uploaded)
-            
+                img = (img > 2)
                 st.download_button(
                     label="Download your image!",
                     data=img,
