@@ -91,15 +91,10 @@ class ImageProcessorApp:
             if self.option == "Noise Removal":
                 
                 binary_result = connected_components(self.uploaded, t=0.5)
-            
-                grayscale_image = binary_result.astype(np.uint8)
-
-                # Encode the grayscale image as bytes
-                _, img_bytes = cv2.imencode(".png", grayscale_image)
-            
+        
                 st.download_button(
                     label="Download your image!",
-                    data=img_bytes.tobytes(),
+                    data=binary_result,
                     file_name='filtered_binary.png'
                 )
 
