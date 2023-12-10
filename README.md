@@ -27,6 +27,20 @@ Following this, we can access each of the connected components and store their i
 
 There will also be a colab notebook in this file that will display the connected components in different ways, which are highlighting, boxing them in, and displaying the outlines and coordinates of them.
 
+## Function Descriptions
+
+Default Filtering
+
+Custom Filtering
+
+Noise Removal
+
+Highlight Component
+
+Visualize Component
+
+Bounding Box Components
+
 
 
 
