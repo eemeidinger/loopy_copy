@@ -169,8 +169,11 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     else:
         raise ValueError("Unsupported image format")
 
+    # Ensure the image is in the range [0, 1]
+    grayscale_image = grayscale_image.astype(np.float32) / 255.0
+
     # Mask the image according to threshold
-    binary_mask = (grayscale_image > t).astype(np.uint8) * 255
+    binary_mask = (grayscale_image > t).astype(np.uint8)
 
     # Perform connected component analysis
     labeled_image, count = measure.label(binary_mask, connectivity=connectivity, return_num=True)
@@ -186,10 +189,7 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
 
     labeled_image, n = measure.label(object_mask, connectivity=2, return_num=True)
 
-    thresh = threshold_otsu(labeled_image)
-    labeled_image = (thresh * 0.002 > labeled_image).astype(np.uint8) * 255
-
-    # Convert the binary image to a three-channel RGB image
+    # Convert the labeled image to a three-channel RGB image
     labeled_image_rgb = np.stack([labeled_image] * 3, axis=-1)
 
     # Show the figure
@@ -202,14 +202,6 @@ def connected_components(image, t=0.5, connectivity=2, min_area=30):
     buffer.seek(0)
 
     return buffer.read()
-
-  
-    #show the fig
-    plt.axis('off')
-    plt.imshow(labeled_image, cmap='gray_r')
-    plt.savefig('cc_processed')
-    plt.show()  
-    return labeled_image
 
 def get_prop(img):
     img4 = rgb2gray(img)
