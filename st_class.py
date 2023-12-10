@@ -102,12 +102,12 @@ class ImageProcessorApp:
                 # Call the connected_components function directly
                 binary_result = connected_components(self.uploaded, t=0.5)
                 
-                # Convert to 8-bit unsigned integer array
-                binary_result = binary_result.astype(np.uint8) * 255
+                # Convert to bytes
+                binary_bytes = binary_result.tobytes()
                 
                 st.download_button(
                     label="Download your image!",
-                    data=binary_result.tobytes(),
+                    data=binary_bytes,
                     file_name='filtered_binary ' + self.uploaded_file.name
                 )
                                           
