@@ -1,7 +1,8 @@
 # loopy_copy
-Image analysis for 19th century port documents
 
+In this repository we will work with historical documents to be able to filter out unnecessary text, ink bleedthrough, or blotches on the pages, as well as accounting for potential curvature of pages. 
 
+Below is an example workflow of the filtering algorithm used here. Inside, we use multiotsu thresholding to divide the pixel intensities into five distinct classes, represented by the colors in the words. The algorithm assigns almost no weight to the ink bleedthrough from the other side of the page, which is represented by its lack of color. After the algorithm decides which text it wants to take, it converts it to a two colored image, represented here by the black and yellow image.
 ![workflow](https://github.com/eemeidinger/loopy_copy/assets/136099064/8932fd73-8c2e-4726-87f2-ed29d0d8e69d)
 
 
