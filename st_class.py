@@ -90,7 +90,7 @@ class ImageProcessorApp:
 
             if self.option == "Noise Removal":
                 self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
-                labeled_image, binary_mask = connected_components(self.uploaded, t=0.5)
+                labeled_image = connected_components(self.uploaded, t=0.5)
     
                 #img_bytes = cv2.imencode(".png", img)[1].tobytes()
                 img = cv2.threshold(img, 1, 255, cv2.THRESH_BINARY)
