@@ -18,7 +18,7 @@ import streamlit as st
 
 import io as bio
 
-from loopy import get_image, unshear, image_processer, connected_components, visualize_component, visualize_bounding_box, display_components
+from loopy import get_image, unshear, image_processor, connected_components, visualize_component, visualize_bounding_box, display_components
 
 
 class ImageProcessorApp:
