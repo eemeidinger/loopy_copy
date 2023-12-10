@@ -92,7 +92,7 @@ class ImageProcessorApp:
                 self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
                 img = connected_components(self.uploaded)
                 #img_bytes = cv2.imencode(".png", img)[1].tobytes()
-
+                img = cv2.threshold(img, 1, 255, cv2.THRESH_BINARY)
                 st.download_button(
                     label="Download your image!",
                     data=img,
