@@ -67,7 +67,7 @@ class ImageProcessorApp:
     def run(self):
         if self.uploaded is not None:  # Check if self.uploaded is defined
             if self.option == "Default Filtering":
-                img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name, t0=0.205, t1=0.3465,
+                img, t0, t1, t2, t3, t4 = image_processor(self.uploaded , t0=0.205, t1=0.3465,
                                                            t2=0.4657, t3=0.5472, t4=0.5974)
                 st.download_button(
                     label="Download your image!",
@@ -76,7 +76,7 @@ class ImageProcessorApp:
                 )
 
             if self.option == "Custom Filtering":
-                img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name)
+                img, t0, t1, t2, t3, t4 = image_processor(self.uploaded)
 
                 st.download_button(
                     label="Download your image!",
