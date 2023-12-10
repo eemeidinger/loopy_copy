@@ -90,15 +90,15 @@ class ImageProcessorApp:
 
             if self.option == "Noise Removal":
                 self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
-                labeled_image = connected_components(self.uploaded, t=0.5)
-
-
-                _, img_bytes = cv2.imencode(".png", labeled_image)
-                
+                binary_result = connected_components(self.uploaded, t=0.5)
+            
+                # Encode the binary result as bytes
+                _, img_bytes = cv2.imencode(".png", binary_result.astype(np.uint8) * 255)
+            
                 st.download_button(
                     label="Download your image!",
                     data=img_bytes.tobytes(),
-                    file_name='filtered ' + self.uploaded_file.name
+                    file_name='filtered_binary ' + self.uploaded_file.name
                 )
 
             if self.option == "Highlighting":
