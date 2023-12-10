@@ -38,11 +38,10 @@ class ImageProcessorApp:
         """)
 
         # st.image('workflow.png', caption='The image processor works with many different threshold values to be precise in which text it wants to keep')
+        self.uploaded = None  # Initialize self.uploaded to None
         self.image()
         self.run()
 
-
-        
     def image(self):
         self.uploaded_file = st.file_uploader("Choose a png file")
         if self.uploaded_file is not None:
@@ -62,45 +61,46 @@ class ImageProcessorApp:
         st.write('You selected:', self.option)
 
         return self.uploaded, self.uploaded_file, self.option
-   
+
     def run(self):
-        if self.option == "Default Filtering":
-            img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name, t0=0.205, t1=0.3465,
-                                                       t2=0.4657, t3=0.5472, t4=0.5974)
-            st.download_button(
-                label="Download your image!",
-                data=img,
-                file_name='filtered ' + self.uploaded_file.name
-            )
+        if self.uploaded is not None:  # Check if self.uploaded is defined
+            if self.option == "Default Filtering":
+                img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name, t0=0.205, t1=0.3465,
+                                                           t2=0.4657, t3=0.5472, t4=0.5974)
+                st.download_button(
+                    label="Download your image!",
+                    data=img,
+                    file_name='filtered ' + self.uploaded_file.name
+                )
 
-        if self.option == "Custom Filtering":
-            img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name)
+            if self.option == "Custom Filtering":
+                img, t0, t1, t2, t3, t4 = image_processor(self.uploaded, name=self.uploaded_file.name)
 
-            st.download_button(
-                label="Download your image!",
-                data=img,
-                file_name='filtered ' + self.uploaded_file.name
-            )
+                st.download_button(
+                    label="Download your image!",
+                    data=img,
+                    file_name='filtered ' + self.uploaded_file.name
+                )
 
-        if self.option == "Noise Removal":
-            img = connected_components(self.uploaded)
+            if self.option == "Noise Removal":
+                img = connected_components(self.uploaded)
 
-            st.download_button(
-                label="Download your image!",
-                data=img,
-                file_name='filtered ' + self.uploaded_file.name
-            )
+                st.download_button(
+                    label="Download your image!",
+                    data=img,
+                    file_name='filtered ' + self.uploaded_file.name
+                )
 
-        if self.option == "Highlighting":
-            display_components(self.uploaded)
+            if self.option == "Highlighting":
+                display_components(self.uploaded)
 
-        if self.option == "Boxing":
-            img = visualize_bounding_box(self.uploaded)
+            if self.option == "Boxing":
+                img = visualize_bounding_box(self.uploaded)
 
-            st.download_button(
-                label="Download your image!",
-                data=img,
-                file_name='boxed ' + self.uploaded_file.name
-            )
-
- 
+                st.download_button(
+                    label="Download your image!",
+                    data=img,
+                    file_name='boxed ' + self.uploaded_file.name
+                )
+        else:
+            st.warning("Please upload an image before selecting a function.")
