@@ -89,7 +89,7 @@ class ImageProcessorApp:
                 )
 
             if self.option == "Noise Removal":
-
+                self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
                 binary_result = connected_components(self.uploaded, t=0.5)
             
                 # Encode the binary result as bytes
