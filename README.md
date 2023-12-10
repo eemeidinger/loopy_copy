@@ -12,8 +12,9 @@ After we do the image filtering, you can see that we still have a little bit of 
 
 ![final_image](https://github.com/eemeidinger/loopy_copy/blob/main/first_image/filtered_image_for_github.png)
 
-<div style="text-align: center;">
-  ![final_image](https://github.com/eemeidinger/loopy_copy/blob/main/first_image/filtered_image_for_github.png)
-</div>
+<p align="center">
+  <img src="https://github.com/eemeidinger/loopy_copy/blob/main/first_image/filtered_image_for_github.png" alt="final_image">
+</p>
+
 
 [Click here to access the filtering app!](https://loopycopy.streamlit.app/)
