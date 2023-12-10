@@ -3,6 +3,7 @@ Image analysis for 19th century port documents
 
 ![alt text](https://github.com/eemeidinger/loopy_copy/tree/main/first_image/workflow.png?raw=true)
 
+![alt text](https://github.com/eemeidinger/loopy_copy/tree/main/first_image/workflow.png)
 
 
 The goal is to conduct OCR analysis to help with reading and transcription of Spanish port documents. While this project is designed to be used on old Spanish documents, it is intended to be flexible enough to be trained on any form of writing.
