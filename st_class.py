@@ -89,20 +89,16 @@ class ImageProcessorApp:
                 )
 
             if self.option == "Noise Removal":
-                # Convert the uploaded image to grayscale
-                grayscale_image = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
-                
-                # Run connected components
-                buffer = connected_components(grayscale_image, t=0.5)
-            
-                # Provide a download link
+                self.uploaded = cv2.cvtColor(self.uploaded, cv2.COLOR_BGR2GRAY)
+                img = connected_components(self.uploaded)
+                img_0 = image_processor(img , t0=0.205, t1=0.3465,
+                                                           t2=0.4657, t3=0.5472, t4=0.5974)
                 st.download_button(
                     label="Download your image!",
-                    data=buffer.getvalue(),
-                    file_name='filtered_binary.png',
-                    mime='image/png'
+                    data=img_0,
+                    file_name='filtered ' + self.uploaded_file.name
                 )
-                
+                            
 
             if self.option == "Highlighting":
                 display_components(self.uploaded)
