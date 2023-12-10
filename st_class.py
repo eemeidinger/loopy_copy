@@ -38,8 +38,6 @@ class ImageProcessorApp:
         Boxing: This function will take an already filtered image and create boxes around each distinct instance of text
         """)
 
-        # st.image('workflow.png', caption='The image processor works with many different threshold values to be precise in which text it wants to keep')
-
         self.uploaded_file = st.file_uploader("Choose a png file")
 
         if self.uploaded_file is not None:
@@ -58,6 +56,8 @@ class ImageProcessorApp:
         )
 
         st.write('You selected:', self.option)
+
+    return 
 
 
     def window(self): 
