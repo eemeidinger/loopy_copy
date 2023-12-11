@@ -24,8 +24,8 @@ from loopy import get_image, unshear, image_processor, connected_components, hig
 class ImageProcessorApp:
     def __init__(self):
         st.write("""
-        ## Loopy_copy
-        # This software will help you be able to easily filter unnecessary text or blotches out of any image 
+        # loopy_copy
+        ## This software will help you be able to easily filter unnecessary text or blotches out of any image 
         ---
         In this app, you will be able to use three different functions to perform different tasks
 
