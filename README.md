@@ -29,17 +29,17 @@ There will also be a colab notebook in this file that will display the connected
 
 ## Function Descriptions
 
-Default Filtering
+Default Filtering: This function uses preset filters to binarize an image for further analysis. This is the first function to be applied to any image, and should be applied to a raw image. This function also accounts for curvature of a page by unwarping it. This is optimized for speed but may not necessarily be perfect for each image. 
 
-Custom Filtering
+Custom Filtering: This function is the same as default filtering, but calculates thresholds specific to the image being analyzed. This function will take much longer, taking around five minutes, but will give the most accurate results for an individual image.
 
-Noise Removal
+Noise Removal: This function will be applied to a filtered image and will remove smaller pieces of text from it. This is done in order to not have too many pieces of text for a machine learning model to analyze in a reasonable amount of time. This can also help make images easier on the eyes with less ink on the screen.
 
-Highlight Component
+Highlight Component: This function highlights the connected components of an image with noise removed. It shows each connected component and their internal properties.
 
-Visualize Component
+Visualize Component: This function shows the outline and coordinates each connected component for an image with noise removed. 
 
-Bounding Box Components
+Bounding Box Components: This function shows a red box around each connected component for an image with noise removed.
 
 
 
